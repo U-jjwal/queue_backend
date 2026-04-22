@@ -11,7 +11,7 @@ import serviceRoutes from './routes/serviceRoutes.js';
 const app = express();
 
 app.use(cors({
-  origin:process.env.ALLOW_ORIGINS || 'http://localhost:3000',
+  origin:process.env.ALLOW_ORIGINS ,
   credentials: true 
 }))
 app.use(express.json());
