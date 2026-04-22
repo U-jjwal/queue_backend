@@ -12,7 +12,7 @@ const app = express();
 
 const allowedOrigins = process.env.ALLOW_ORIGINS
     ? process.env.ALLOW_ORIGINS.split(',').map(o => o.trim())
-    : ['https://queue-backend-six.vercel.app/', 'http://localhost:5173', 'http://localhost:5174'];
+    : ['https://queue-indol-phi.vercel.app', 'http://localhost:5173', 'http://localhost:5174'];
 
 app.use(cors({
     origin: function (origin, callback) {
