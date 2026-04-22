@@ -11,7 +11,7 @@ import serviceRoutes from './routes/serviceRoutes.js';
 const app = express();
 
 app.use(cors({
-  origin:process.env.ALLOW_ORIGINS ,
+  origin:'https://queue-beryl-six.vercel.app' ,
   credentials: true 
 }))
 app.use(express.json());
