@@ -7,8 +7,8 @@ const sendTokenResponse = (res, statusCode, userOrAdmin, role, token) => {
   const options = {
     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax'
+    secure: true, // always secure for cross-origin sameSite=none
+    sameSite: 'none'
   };
 
   if (role === 'admin') {
@@ -77,7 +77,9 @@ export const loginAdmin = async (req, res) => {
 export const logout = (req, res) => {
   res.cookie('token', 'none', {
     expires: new Date(Date.now() + 10 * 1000),
-    httpOnly: true
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none'
   });
   res.status(200).json({ success: true, message: 'Logged out successfully' });
 };

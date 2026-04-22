@@ -10,8 +10,18 @@ import serviceRoutes from './routes/serviceRoutes.js';
 
 const app = express();
 
+const allowedOrigins = process.env.ALLOW_ORIGINS 
+  ? process.env.ALLOW_ORIGINS.split(',').map(o => o.trim())
+  : ['https://queue-beryl-six.vercel.app', 'http://localhost:5173', 'http://localhost:5174'];
+
 app.use(cors({
-  origin:'https://queue-beryl-six.vercel.app' ,
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true 
 }))
 app.use(express.json());
